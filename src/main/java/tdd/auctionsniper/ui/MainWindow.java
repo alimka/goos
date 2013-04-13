@@ -11,6 +11,7 @@ public class MainWindow extends JFrame {
 
     public static final String MAIN_WINDOW_NAME = "Auction Sniper Main";
     public static final String SNIPER_STATUS_NAME = "sniper status";
+    public static final String STATUS_BIDDING = "Bidding";
     private final JLabel sniperStatus = createLabel(STATUS_JOINING);
 
     private static JLabel createLabel(String initalText) {
@@ -24,6 +25,7 @@ public class MainWindow extends JFrame {
         super("Auction Sniper Main");
         setName(MAIN_WINDOW_NAME);
         add(sniperStatus);
+        setSize(new Dimension(250, 50));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(Boolean.TRUE);
     }
