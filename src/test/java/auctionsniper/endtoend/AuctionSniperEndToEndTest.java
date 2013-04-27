@@ -1,4 +1,4 @@
-package tdd.auctionsniper.endtoendtests;
+package auctionsniper.endtoend;
 
 import org.junit.After;
 import org.junit.Test;

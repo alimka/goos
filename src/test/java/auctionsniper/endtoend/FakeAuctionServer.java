@@ -1,4 +1,4 @@
-package tdd.auctionsniper.endtoendtests;
+package auctionsniper.endtoend;
 
 import org.hamcrest.Matcher;
 import org.jivesoftware.smack.Chat;
@@ -6,7 +6,7 @@ import org.jivesoftware.smack.ChatManagerListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
-import tdd.auctionsniper.ui.Main;
+import auctionsniper.Main;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
