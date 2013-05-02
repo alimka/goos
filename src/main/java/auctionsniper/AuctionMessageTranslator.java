@@ -20,11 +20,9 @@ public class AuctionMessageTranslator implements MessageListener{
         if ("CLOSE".equals(type)) {
             listener.auctionClosed();
         } else if ("PRICE".equals(type)) {
-            listener.currentPrice(
-                    Integer.parseInt(event.get("CurrentPrice")),
+            listener.currentPrice(Integer.parseInt(event.get("CurrentPrice")),
                     Integer.parseInt(event.get("Increment")));
         }
-
     }
 
     private HashMap<String, String> unpackEventFrom(Message message) {

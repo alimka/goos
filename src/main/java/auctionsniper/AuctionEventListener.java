@@ -4,5 +4,5 @@ public interface AuctionEventListener {
 
     public void auctionClosed();
 
-    public void currentPrice(Integer currentPrice, Integer increment);
+    public void currentPrice(int price, int increment);
 }
