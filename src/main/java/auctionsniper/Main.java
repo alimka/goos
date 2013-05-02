@@ -2,16 +2,14 @@ package auctionsniper;
 
 import auctionsniper.ui.MainWindow;
 import org.jivesoftware.smack.Chat;
-import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.packet.Message;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class Main implements AuctionEventListener {
+public class Main implements SniperListener {
     public static final String STATUS_JOINING = "Joining";
     public static final String SNIPER_STATUS_NAME = "sniper status";
 
@@ -53,10 +51,16 @@ public class Main implements AuctionEventListener {
     }
 
     private void joinAuction(XMPPConnection connection, String itemId) throws XMPPException {
+        Auction nullAuction = new Auction() {
+            @Override
+            public void bid(int amount) {
+            }
+        };
+
         disconnectWhenUICloses(connection);
 
         final Chat chat = connection.getChatManager().createChat(auctionId(itemId, connection),
-                new AuctionMessageTranslator(this));
+                new AuctionMessageTranslator(new AuctionSniper(this, nullAuction)));
         this.notToBeGCd = chat;
         chat.sendMessage(JOIN_COMMAND_FORMAT);
     }
@@ -82,7 +86,7 @@ public class Main implements AuctionEventListener {
     }
 
     @Override
-    public void auctionClosed() {
+    public void sniperLost() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -92,7 +96,12 @@ public class Main implements AuctionEventListener {
     }
 
     @Override
-    public void currentPrice(int i, int i1) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void sniperBidding() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                ui.showStatus(MainWindow.STATUS_BIDDING);
+            }
+        });
     }
 }
