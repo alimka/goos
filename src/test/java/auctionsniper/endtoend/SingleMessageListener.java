@@ -19,10 +19,6 @@ public class SingleMessageListener implements MessageListener {
         messages.add(message);
     }
 
-    public void receivesAMessage() throws InterruptedException {
-        assertThat("Message", messages.poll(5, TimeUnit.SECONDS), is(notNullValue()));
-    }
-
     @SuppressWarnings("unchecked")
     public void receivesAMessage(Matcher<? super String> messageMatcher) throws InterruptedException {
         final Message message = messages.poll(5, TimeUnit.SECONDS);
