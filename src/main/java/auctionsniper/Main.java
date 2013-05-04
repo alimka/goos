@@ -11,7 +11,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class Main {
-    public static final String STATUS_JOINING = "Joining";
     public static final String SNIPER_STATUS_NAME = "sniper status";
 
     private  static final int ARG_HOSTNAME = 0;

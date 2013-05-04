@@ -24,7 +24,7 @@ public class ApplicationRunner {
         thread.start();
 
         driver = new AuctionSniperDriver(1000);
-        driver.showsSniperStatus(Main.STATUS_JOINING);
+        driver.showsSniperStatus(MainWindow.STATUS_JOINING);
     }
 
     public void hasShownSniperIsBidding() {
