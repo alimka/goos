@@ -40,15 +40,5 @@ public class AuctionMessageTranslatorTest {
         translator.processMessage(UNUSED_CHAT, message);
     }
 
-    @Test
-    public void notifiesBidDetailsWhenCurrentPriceMessageReceivedFromSniper() {
-        context.checking(new Expectations() {{
-            exactly(1).of(listener).currentPrice(192, 7, AuctionEventListener.PriceSource.FromSnipper);
-        }});
 
-        Message message = new Message();
-        message.setBody("SOLVersion: 1.1; Event: PRICE; CurrentPrice: 192; Increment: 7; Bidder:" + SNIPER_ID +";");
-
-        translator.processMessage(UNUSED_CHAT, message);
-    }
 }
