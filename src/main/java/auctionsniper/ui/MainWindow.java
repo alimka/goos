@@ -16,8 +16,10 @@ public class MainWindow extends JFrame {
     public static final String STATUS_LOST = "Lost";
     public static final String STATUS_WINNING = "Winning";
     public static final String STATUS_WON = "Won";
+    private static final String SNIPERS_TABLE_NAME = "Snipers table";
 
     private final JLabel sniperStatus = createLabel(STATUS_JOINING);
+    private final SnipersTableModel snipers = new SnipersTableModel();
 
     private static JLabel createLabel(String initalText) {
         JLabel result = new JLabel(initalText);
@@ -29,13 +31,27 @@ public class MainWindow extends JFrame {
     public MainWindow() {
         super("Auction Sniper Main");
         setName(MAIN_WINDOW_NAME);
-        add(sniperStatus);
-        setSize(new Dimension(250, 50));
+        fillContentPane(makeSnipersTable());
+        pack();
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(Boolean.TRUE);
     }
 
-    public void showStatus(String status) {
-        sniperStatus.setText(status);
+    private void fillContentPane(JTable snipersTable) {
+        final Container contentPane = getContentPane();
+        contentPane.setLayout(new BorderLayout());
+
+        contentPane.add(new JScrollPane(snipersTable), BorderLayout.CENTER);
+    }
+
+    private JTable makeSnipersTable() {
+        final JTable snipersTable = new JTable(snipers);
+        snipersTable.setName(SNIPERS_TABLE_NAME);
+        return snipersTable;
+    }
+
+    public void showStatusText(String statusText) {
+        snipers.setStatusText(statusText);
     }
 }

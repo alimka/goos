@@ -35,7 +35,7 @@ public class SniperStateDisplayer implements SniperListener {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                ui.showStatus(status);
+                ui.showStatusText(status);
             }
         });
     }
